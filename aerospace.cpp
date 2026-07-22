@@ -9,7 +9,7 @@ float gyroY = 0.0f
 bool checkHorizontal = true;
 bool checkVertical = true;
  
- void scan()
+  void scan()
  if(StartAutoPilote)
  {
     SetButton = readButton();
@@ -17,10 +17,28 @@ bool checkVertical = true;
      gyroZ = readGyroZ();
      gyroY = readGyro();
 
-     checkHorizontal = (gyroZ > 0.5f)
-    checkVertical = (gyroX < 0.2f)
+     checkHorizontal = (gyroZ > 0.55f)
+    checkVertical = (gyroX < 0.45f)
 
 
  }wsw
 
+ //security system
+ bool readHands = false;
+ bool safetySound = false;
+ bool StopAutoPilote = false;
+ bool readHandsSensor = false;
  
+
+ 
+  void security()
+ {
+   readHands = readHandsSensor;
+ 
+   if(StopAutoPilote)
+   {
+      safetySound = true;
+      StartAutoPilote = false;
+
+   }
+}
